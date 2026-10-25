@@ -1,8 +1,7 @@
 from PIL import Image
+import boto3
 
-
-
-
+s3 = boto3.client("s3")
 
 def process_img(in_path,out_path):
 
