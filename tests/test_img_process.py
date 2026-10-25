@@ -1,15 +1,20 @@
-from PIL import Image
 
+from PIL import Image
 from src.resize_script import process_img
 
 
-def test_resize_image():
-    input_path = "tests/test_img/in/hello_kitty_img.jpg"
-    output_path = "tests/test_img/out/hello_kitty_thumbnail.jpg"
+def test_resize_image(tmp_path):
+    input_path = tmp_path / "input.jpg"
+    output_path = tmp_path / "thumbnail.jpg"
+
+    # 1. Create a sample image before processing it
+    Image.new("RGB", (800, 600), color="red").save(input_path)
 
     process_img(input_path, output_path)
 
-    image = Image.open(output_path)
+    
+    assert output_path.exists()
 
-    assert image.width <= 400
-    assert image.height <= 400
+    with Image.open(output_path) as image:
+        assert image.width <= 400
+        assert image.height <= 400
