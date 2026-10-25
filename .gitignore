@@ -1,0 +1,10 @@
+cat > .gitignore <<'EOF'
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Generated test images
+tests/test_img/out/
+EOF
